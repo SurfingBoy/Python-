@@ -273,6 +273,7 @@
 # print(Student.count)
 #-----------------------
 #--------------面向对象---------#
+
 #-------------面向对象高级编程----------
 #--------[__iter__方法]------------
 # class Fib(object):
@@ -310,22 +311,49 @@
 # f=Fib()
 # print(f[6])
 #-------------面向对象高级编程----------
-from functools import reduce
+# from functools import reduce
+#
+# def str2num(s):
+#     return float(s)
+#
+# def calc(exp):
+#     ss = exp.split('+')
+#     ns = map(str2num, ss)
+#     return reduce(lambda n, x: x+n, ns)
+#
+# def main():
+#     r = calc('100 + 200 + 345')
+#     print('100 + 200 + 345 =', r)
+#     r = calc('99 + 88 + 7.6')
+#     print('99 + 88 + 7.6 =', r)
+#
+# main()
 
-def str2num(s):
-    return float(s)
-
-def calc(exp):
-    ss = exp.split('+')
-    ns = map(str2num, ss)
-    return reduce(lambda n, x: x+n, ns)
-
-def main():
-    r = calc('100 + 200 + 345')
-    print('100 + 200 + 345 =', r)
-    r = calc('99 + 88 + 7.6')
-    print('99 + 88 + 7.6 =', r)
-
-main()
+#------------------file操作-------------------
+# with open('README.md','r',encoding='utf-8',errors='ignore') as f:
+#     print(f.read())
 
 
+# fpath = r'C:\Windows\system.ini'
+# with open(fpath, 'r') as f:
+#     for line in f.readlines():
+#         print(line)
+#------------------file操作-------------------
+
+#--------------BytesIo和StringIo--------------------
+# from io import StringIO
+# from io import BytesIO
+# f=BytesIO()
+# f.write('在中国'.encode('gbk'))
+# print(f.write('在中国'.encode('gbk')))
+# print(f.getvalue())
+
+# f=StringIO()
+# f.write('Hello')
+# f.write(' ')
+# f.write('world')
+# print(f.getvalue())
+#--------------BytesIo和StringIo--------------------
+
+import os
+print(os.environ)

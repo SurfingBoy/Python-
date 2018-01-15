@@ -355,5 +355,88 @@
 # print(f.getvalue())
 #--------------BytesIo和StringIo--------------------
 
-import os
-print(os.environ)
+#----------------------json---------------------
+# import json
+# # d={'name':'小明','age':18}
+# # d1=dict(name='liming',age=18)
+# # j=json.dumps(d)
+# # print(j)
+#
+# class Student(object):
+#     def __init__(self,name,age,score):
+#         self.n=name
+#         self.a=age
+#         self.s=score
+# def student2dict(std):
+#     return {
+#         'name':std.n,
+#         'age':std.a,
+#         'score':std.s
+#     }
+# s=Student('张三',18,90)
+# # print(json.dumps(s,default=student2dict))
+# print(json.dumps(s,default=lambda obj:obj.__dict__,ensure_ascii=False))
+#----------------------json---------------------
+
+#----------------------进程----------------------
+#-----------multiprocessing-----------
+# from multiprocessing import Process
+# import os
+# def run_proc(name):
+#     print('Run child process %s(%s)...'%(name,os.getpid()))
+# if __name__ == '__main__':
+#     print('Parent process %s'%os.getpid())
+#     p=Process(target=run_proc,args=('test',))
+#     print('Child process will start')
+#     p.start()
+#     p.join()
+#     print('Child process end')
+#-----------multiprocessing-----------
+
+#--------------Pool---------------
+# from multiprocessing import Pool
+# import os,time,random
+# def long_time_task(name):
+#     print('Run task %s(%s)'%(name,os.getpid()))
+#     start=time.time()
+#     time.sleep(random.random()*10)
+#     end=time.time()
+#     print('Task %s run %0.2f seconds'%(name,(end-start)))
+# if __name__ == '__main__':
+#     print('Parent process %s'%os.getpid())
+#     p=Pool()
+#     for i in range(5):
+#         p.apply_async(long_time_task,args=(i,))
+#     print('Waiting for all subprocesses done...')
+#     p.close()
+#     p.join()
+#     print('all subprocesses done')
+#--------------Pool---------------
+
+#---------------进程间通信----------------
+from multiprocessing import Process,Queue
+import os,time,random
+
+def write(q):
+    print("process to write: %s"%os.getpid())
+    for value in ['A','B','C']:
+        print('Put %s to queue..'%value)
+        q.put(value)
+        time.sleep(random.random())
+def read(q):
+    print('Process to read:%s'%os.getpid())
+    while True:
+        value=q.get(True)
+        print('Get %s from queue'%value)
+if __name__ == '__main__':
+    q=Queue()
+    pw=Process(target=write,args=(q,))
+    pr=Process(target=read,args=(q,))
+    pw.start()
+    pr.start()
+    #等待pw进程结束
+    pw.join()
+    #pr进程里是死循环，无法等待其结束，只能强行终止
+    pr.terminate()
+#---------------进程间通信----------------
+#----------------------进程----------------------

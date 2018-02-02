@@ -440,3 +440,17 @@
 #     pr.terminate()
 #---------------进程间通信----------------
 #----------------------进程----------------------
+
+#--------contextlib---------------
+# from contextlib import contextmanager
+#
+# @contextmanager
+# def tag(name):
+#     print('<%s>'%name)
+#     yield
+#     print('<%s>'%name)
+# with tag('h1'):
+#     print('Hello')
+#     print('World')
+#--------contextlib---------------
+

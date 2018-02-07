@@ -454,3 +454,11 @@
 #     print('World')
 #--------contextlib---------------
 
+#----------------运维工具------------
+# import  psutil
+# print(psutil.virtual_memory())
+# print(psutil.net_io_counters())
+# print(psutil.net_if_addrs())
+# print(psutil.net_connections())
+# print(psutil.test())
+#----------------运维工具------------

@@ -180,17 +180,36 @@
 # print(f1(),f2(),f3())
 #####--------测试------########
 # def createCounter():
-#     def counter(i):
-#         def c():
-#             return i
-#         return c
-#     j=1
-#     while True:
-#         j=j+1
-#         counter(j)
-#     return x
-# f1,f2,f3=createCounter()
-# print(f1,f2,f3)
+#     s=[0]
+#     def counter():
+#         s[0]=s[0]+1
+#         return s[0]
+#     return counter
+# counterA=createCounter()
+# print(counterA(),counterA(),counterA())
+
+# def createCounter():
+#     s=0
+#     def counter():
+#         nonlocal s
+#         s=s+1
+#         return s
+#     return counter
+# counterB=createCounter()
+# print(counterB(),counterB(),counterB())
+
+# def createCounter():
+#     def g():
+#         s=0
+#         while True:
+#             s=s+1
+#             yield s
+#     it=g()
+#     def counter():
+#         return next(it)
+#     return counter
+# counterC=createCounter()
+# print(counterC(),counterC(),counterC())
 #####--------测试------########
 #-------------高阶函数》返回函数---------#
 

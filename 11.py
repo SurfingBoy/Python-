@@ -361,7 +361,9 @@
 #
 # s1=Student('qw')
 # s1.age=12
+# s2=Student
 # print(s1.age)
+# print(s2.count)
 
 # class Screen(object):
 #     @property
@@ -549,10 +551,173 @@
 #
 # main()
 
-import logging
+# import logging
+#
+# logging.basicConfig(level=logging.INFO)
+# n = 0
+# logging.info('n=%d' % n)
+# print(10 / n)
+# print('end')
 
-logging.basicConfig(level=logging.INFO)
-n = 0
-logging.info('n=%d' % n)
-print(10 / n)
-print('end')
+
+# def fact(n):
+#     '''
+#     Calculate 1*2*...*n
+#
+#     >>> fact(1)
+#     1
+#     >>> fact(10)
+#     362880
+#     >>> fact(-1)
+#     Traceback (most recent call last):
+#     ...
+#     ValueError
+#     '''
+#     if n<1:
+#         raise ValueError()
+#     if n==1:
+#         return 1
+#     return n*fact(n-1)
+# if __name__ == '__main__':
+#     import doctest
+#     doctest.testmod()
+
+
+# with open('C:/Users\su\Desktop\scores.txt','a') as f:
+#     # for line in f.readlines():
+#     #     print(line.strip())
+#     f.write('这是追加的内容')
+
+# from io import StringIO
+# f=StringIO()
+# f.write('Hello World')
+# print(f.tell())        #----Stream Position
+# f.seek(0)
+# s=f.read()
+# print(s)
+
+# import os
+# #查看当前目录绝对路径
+# print(os.path.abspath('.'))
+# #在某个目录下创建一个新目录,首先把新目录的完整路径表示出来
+# print(os.path.join('F:/xiangmu\Python-','testdir'))
+# #然后创建一个目录
+# print(os.mkdir('F:/xiangmu/Python-/testdir'))
+# #删除一个目录
+# print(os.rmdir('F:/xiangmu/Python-/testdir'))
+
+# import os
+# #列出当前目录下的所有目录
+# print([x for x in os.listdir('.') if os.path.isdir(x)])
+# #列出所有.jpg文件
+# print([x for x in os.listdir('.') if os.path.isfile(x) and os.path.splitext(x)[1]=='.jpg'])
+
+# import os
+# class findFile(object):
+#     relativePath=''
+#     def __init__(self,fileName):
+#         self.fileName=fileName
+#
+#     def showPath(self,path = '.'):
+#         self.relativePath = self.relativePath+path+'/'
+#         dirs = os.listdir(self.relativePath)
+#         for dir in dirs:
+#             if os.path.isdir(self.relativePath+dir):
+#                 if  dir != '__pycache__':
+#                     self.showPath(dir)
+#             else:
+#                 if dir.find(self.fileName) >= 0:
+#                     print(self.relativePath+dir)
+#         self.relativePath=''
+# f=findFile('task')
+# print(f.showPath())
+
+# import os
+# def search(a,b):
+#     for file in os.listdir(a):
+#         if os.path.isfile(a+'\\'+file):
+#             if b in file:
+#                 print(file,'=>',a+'\\'+file)
+#         else:
+#             search(a+'\\'+file,b)
+# search(os.path.abspath('.'),'models')
+
+# import os
+# import time
+# class MyLsL(object):
+#     def __init__(self,dir='.'):
+#         self.dirList=os.listdir(dir)
+#     def ls(self):
+#         for file in self.dirList:
+#             print(self.getFileInfo(file))
+#     def getFileInfo(self,fileName):
+#         size = str(os.path.getsize(fileName))
+#         fileType = 'd' if os.path.isdir(fileName) else '-'
+#         readAble = 'r' if os.access(fileName,os.R_OK) else '-'
+#         writeAble = 'w' if os.access(fileName,os.W_OK) else '-'
+#         opeAble = 'x' if os.access(fileName,os.X_OK) else '-'
+#         timestamp = os.path.getmtime(fileName)  # getctime 创建时间； getatime 最近访问时间；getmtime 最近修改时间
+#         timeLocal = time.localtime(timestamp)
+#         dt = time.strftime('%Y-%m-%d',timeLocal)
+#         return fileName+'           '+fileType+readAble+writeAble+' '+opeAble+' '+size+' '+dt
+# my=MyLsL()
+# print(my.ls())
+
+# ---------------序列化--------------
+# import pickle
+# d=dict(name='Bom',age=12,score=90)
+# # f=open('file.txt','wb')
+# # pickle.dump(d,f)
+# f=open('file.txt','rb')
+# d=pickle.load(f)
+# f.close()
+# print(d)
+
+# --------------json-----------
+# import json
+# d=dict(name='Bom',age=12,score=90)
+# print('d=',d)
+# j=json.dumps(d,ensure_ascii=True)
+# j2=json.dumps(d,ensure_ascii=False)
+# print('j=',j)
+# print('j2=',j2)
+#
+# json_str='{"name": "Bom", "score": 90, "age": 12}'
+# j1=json.loads(json_str)
+# print('j1=',j1)
+
+# import json
+# class Student(object):
+#     def __init__(self,name,age,score):
+#         self.name=name
+#         self.age=age
+#         self.score=score
+# s=Student('Bom',14,90)
+# print(json.dumps(s,default=lambda obj:obj.__dict__))
+#
+# def dict2student(d):
+#     return Student(d['name'],d['age'],d['score'])
+# json_str='{"score": 90, "age": 14, "name": "Bom"}'
+# print(json.loads(json_str,object_hook=dict2student))
+
+import json
+
+
+class Student(object):
+    def __init__(self, name, age, score):
+        self.name = name
+        self.age = age
+        self.score = score
+
+
+s = Student('Bom', 12, 90)
+
+
+def MyJsonLoads(cls, jsonStr):
+    clsDict = cls.dict
+    jsonDict = json.loads(jsonStr)
+    className = str(type(cls))[str(type(cls)).find('.') + 1:-2]
+    newObj = eval(className + '()')
+    for key in clsDict:
+        setattr(newObj, key, jsonDict[key])
+    return newObj

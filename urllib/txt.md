@@ -34,7 +34,8 @@ Handler
 * HTTPPasswordMgr：管理密码
 * HTTPBasicAuthHandler：管理认证
 
-####**登录**
+**登录**
+
 发送请求使用OpenerDirector
 
     from urllib.request import HTTPPasswordMgrWithDefaultRealm,HTTPBasicAuthHandler,build_opener
@@ -55,7 +56,8 @@ Handler
     except URLError as e:
         print(e.reason)
 ***
-####**代理**
+**代理**
+
     from urllib.error import URLError
     from urllib.request import ProxyHandler,build_opener
 
@@ -70,7 +72,8 @@ Handler
     except URLError as e:
         print(e.reason)
 ***
-####**Cookies**
+**Cookies**
+
     import http.cookiejar,urllib.request
 
     cookie=http.cookiejar.CookieJar()

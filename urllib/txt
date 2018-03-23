@@ -1,0 +1,5 @@
+urllib四个模块
+request
+error
+parse
+robotparser:处理网站robots文件

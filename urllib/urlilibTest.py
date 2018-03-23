@@ -23,20 +23,46 @@
 # response = request.urlopen(req)
 # print(str(response.read(), encoding='utf-8'))
 
-from urllib.request import HTTPPasswordMgrWithDefaultRealm, HTTPBasicAuthHandler, build_opener
-from urllib.error import URLError
+# 登录
+# from urllib.request import HTTPPasswordMgrWithDefaultRealm, HTTPBasicAuthHandler, build_opener
+# from urllib.error import URLError
+#
+# username = 'username'
+# passsword = 'password'
+# url = 'https://jenkins.labradors.work/login?from=%2F'
+# p = HTTPPasswordMgrWithDefaultRealm()
+# p.add_password(None, url, username, passsword)
+# auth_handler = HTTPBasicAuthHandler(p)
+# opener = build_opener(auth_handler)
+#
+# try:
+#     result = opener.open(url)
+#     html = result.read().decode('utf-8')
+#     print(html)
+# except URLError as e:
+#     print(e.reason)
 
-username = 'username'
-passsword = 'password'
-url = 'https://jenkins.labradors.work/login?from=%2F'
-p = HTTPPasswordMgrWithDefaultRealm()
-p.add_password(None, url, username, passsword)
-auth_handler = HTTPBasicAuthHandler(p)
-opener = build_opener(auth_handler)
+# #代理
+# from urllib.error import URLError
+# from urllib.request import ProxyHandler,build_opener
+#
+# proxy_handler=ProxyHandler({
+#     'http':'222.208.76.205',
+#     'http':'115.218.123.177'
+# })
+# opener=build_opener(proxy_handler)
+# try:
+#     response=opener.open('https://www.baidu.com')
+#     print(response.read().decode('utf-8'))
+# except URLError as e:
+#     print(e.reason)
 
-try:
-    result = opener.open(url)
-    html = result.read().decode('utf-8')
-    print(html)
-except URLError as e:
-    print(e.reason)
+# cookies
+import http.cookiejar, urllib.request
+
+cookie = http.cookiejar.CookieJar()
+handler = urllib.request.HTTPCookieProcessor(cookie)
+opener = urllib.request.build_opener(handler)
+response = opener.open('https://www.baidu.com')
+for item in cookie:
+    print(item.name + '=' + item.value)

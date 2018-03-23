@@ -34,6 +34,7 @@ Handler
 * HTTPPasswordMgr：管理密码
 * HTTPBasicAuthHandler：管理认证
 
+####**登录**
 发送请求使用OpenerDirector
 
     from urllib.request import HTTPPasswordMgrWithDefaultRealm,HTTPBasicAuthHandler,build_opener
@@ -54,9 +55,42 @@ Handler
     except URLError as e:
         print(e.reason)
 ***
+####**代理**
+    from urllib.error import URLError
+    from urllib.request import ProxyHandler,build_opener
+
+    proxy_handler=ProxyHandler({
+        'http':'222.208.76.205',
+        'http':'115.218.123.177'
+    })
+    opener=build_opener(proxy_handler)
+    try:
+        response=opener.open('https://www.baidu.com')
+        print(response.read().decode('utf-8'))
+    except URLError as e:
+        print(e.reason)
+***
+####**Cookies**
+    import http.cookiejar,urllib.request
+
+    cookie=http.cookiejar.CookieJar()
+    handler=urllib.request.HTTPCookieProcessor(cookie)
+    opener=urllib.request.build_opener(handler)
+    response=opener.open('https://www.baidu.com')
+    for item in cookie:
+        print(item.name+'='+item.value)
   [参照：廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000)
-  
-  [参照掘金文章：Python urllib使用(一)](https://juejin.im/entry/5ab441996fb9a028b547cddc?utm_source=gold_browser_extension)
+
+  [参照掘金文章：Pythonurllib使用(一)](https://juejin.im/entry/5ab441996fb9a028b547cddc?utm_source=gold_browser_extension)        
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

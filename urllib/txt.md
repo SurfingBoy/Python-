@@ -35,7 +35,7 @@ Handler
 * HTTPBasicAuthHandler：管理认证
 
 发送请求使用OpenerDirector
-***
+
     from urllib.request import HTTPPasswordMgrWithDefaultRealm,HTTPBasicAuthHandler,build_opener
     from urllib.error import URLError
 

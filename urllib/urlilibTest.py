@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
-from urllib import request
-from urllib import parse
-from urllib import error
-import socket
+# from urllib import request
+# from urllib import parse
+# from urllib import error
+# import socket
 
 # with request.urlopen('https://api.douban.com/v2/book/2129650') as f:
 #     data=f.read()
@@ -98,20 +98,69 @@ import socket
 # response=opener.open('https://www.baidu.com')
 # print(response.read().decode('utf-8'))
 
-from urllib.parse import urlparse
-from urllib.parse import urlunparse
-from urllib.parse import urlsplit
-from urllib.parse import urlunsplit
-from urllib.parse import urljoin
+# from urllib.parse import urlparse
+# from urllib.parse import urlunparse
+# from urllib.parse import urlsplit
+# from urllib.parse import urlunsplit
+# from urllib.parse import urljoin
+# from urllib.parse import urlencode
+# from urllib.parse import parse_qs
+# from urllib.parse import parse_qsl
+# from urllib.parse import quote
+# from urllib.parse import unquote
+#
+# result = urlparse('http://www.baidu.com/index.html;user?id=5#comment', scheme='https')
+# print('urlparse=', type(result), result)
+#
+# #长度必须是6
+# data = ['http', 'www.baidu.com', 'index.html', 'user', 'id=6', 'comment']
+# print('urlunparse=', urlunparse(data))
+#
+# #返回5个结果
+# result1 = urlsplit('http://www.baidu.com/index.html;user?id=5#comment')
+# print('urlsplit=', result1)
+#
+# #组合链接，长度必须为5
+# data1 = ['http', 'www.baidu.com', 'index.html', 'id=6', 'comment']
+# print('urlunsplit=', urlunsplit(data1))
+#
+# # base_url提供了三项内容scheme、netloc和path。如果这3项在新的链接里不存在，就予以补充；
+# # 如果新的链接存在，就使用新的链接的部分。而base_url中的params、query和fragment是不起作用的
+# print('urljoin=',urljoin('www.baidu.com#comment', '?category=2'))
+#
+# #构造参数
+# params={
+#     'name':'Bom',
+#     'age':'13'
+# }
+# base_url='htttp://www.baidu.com?'
+# url=base_url+urlencode(params)
+# print('urlencode=',url)
+#
+# #反序列化,转换为字典
+# query='name=Bom&age=13'
+# print('parse_qs=',parse_qs(query))
+#
+# #反序列化，转换为元组组成的列表
+# query1='name=Jack&age=31'
+# print('parse_qsl=',parse_qsl(query1))
+#
+# #将中文字符转换为URL编码
+# keyword='爬虫'
+# url1='https://www.baidu.com/s?wd='+quote(keyword)
+# print('quote=',url1)
+#
+# #URL解码
+# url2='https://www.baidu.com/s?wd=%E7%88%AC%E8%99%AB'
+# print('unquote',unquote(url2))
 
-result = urlparse('http://www.baidu.com/index.html;user?id=5#comment', scheme='https')
-print('result=', type(result), result)
 
-data = ['http', 'www.baidu.com', 'index.html', 'user', 'id=6', 'comment']
-print('data=', urlunparse(data))
-
-result1 = urlsplit('http://www.baidu.com/index.html;user?id=5#comment')
-print('result1=', result1)
-
-data1 = ['http', 'www.baidu.com', 'index.html', 'id=6', 'comment']
-print('data1=', urlunsplit(data1))
+# robotparser
+# from urllib.robotparser import RobotFileParser
+# from urllib.request import urlopen
+# rp=RobotFileParser()
+# rp.set_url('http://www.jianshu.com/robots.txt')
+# rp.read()
+# # rp.parse(urlopen('http://www.jianshu.com/robots.txt').read().decode('utf-8').split('\n'))
+# print(rp.can_fetch('*', "http://www.jianshu.com/p/9f18c99fb70c"))
+# print(rp.can_fetch('*', "http://www.jianshu.com/search?q=python&page=1&type=collections"))

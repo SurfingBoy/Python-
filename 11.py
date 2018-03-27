@@ -700,24 +700,18 @@
 # json_str='{"score": 90, "age": 14, "name": "Bom"}'
 # print(json.loads(json_str,object_hook=dict2student))
 
-import json
-
-
-class Student(object):
-    def __init__(self, name, age, score):
-        self.name = name
-        self.age = age
-        self.score = score
-
-
-s = Student('Bom', 12, 90)
-
-
-def MyJsonLoads(cls, jsonStr):
-    clsDict = cls.dict
-    jsonDict = json.loads(jsonStr)
-    className = str(type(cls))[str(type(cls)).find('.') + 1:-2]
-    newObj = eval(className + '()')
-    for key in clsDict:
-        setattr(newObj, key, jsonDict[key])
-    return newObj
+# import json
+# class Student(object):
+#     def __init__(self, name, age, score):
+#         self.name = name
+#         self.age = age
+#         self.score = score
+# s = Student('Bom', 12, 90)
+# def MyJsonLoads(cls, jsonStr):
+#     clsDict = cls.dict
+#     jsonDict = json.loads(jsonStr)
+#     className = str(type(cls))[str(type(cls)).find('.') + 1:-2]
+#     newObj = eval(className + '()')
+#     for key in clsDict:
+#         setattr(newObj, key, jsonDict[key])
+#     return newObj

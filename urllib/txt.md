@@ -103,6 +103,8 @@ robots.txt的语法规则来分析这些内容
 
   [参照掘金文章：Pythonurllib使用(一)](https://juejin.im/entry/5ab441996fb9a028b547cddc?utm_source=gold_browser_extension)      
   [参照掘金文章：【Python3网络爬虫开发实战】3.1.4-分析Robots协议](https://juejin.im/post/5aa9f5996fb9a028d70053a9)
+  
+  [菜鸟教程](http://www.runoob.com/python/python-files-io.html)
     
     
     

@@ -103,6 +103,7 @@ import pymysql
 #     print('Failed')
 # db.close()
 
+
 ##查询数据
 db = pymysql.connect(host='localhost', user='root', password='123456', port=3306, db='spider')
 cursor = db.cursor()
